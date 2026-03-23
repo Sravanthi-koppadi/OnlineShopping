@@ -1,34 +1,46 @@
-/* 1. Main Container: Soft Light Grey/Blue */
+/* --- Base Resets & Variables --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(255, 255, 255, 0.8);
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+}
+
+/* 1. Main Container */
 .auth-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  /* A soft gradient makes light mode feel more premium */
+  padding: 1.5rem; /* Reduced padding for mobile */
   background: radial-gradient(circle at top right, #f8fafc, #f1f5f9);
   font-family: 'Inter', sans-serif;
 }
 
-/* 2. The Glassmorphic Card (Light Edition) */
+/* 2. The Glassmorphic Card */
 .glass-vault-card {
   position: relative;
   width: 100%;
   max-width: 440px;
-  /* Use high-opacity white for the base */
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  /* Use a darker border to define the shape against the light background */
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-color);
   border-radius: 2.5rem;
   padding: 3.5rem 2.5rem;
   overflow: hidden;
-  /* Softer, more natural shadow */
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+  z-index: 1;
 }
 
-/* Decorative Glow Effect (Subtle Purple Hue) */
+/* Decorative Glow */
 .vault-glow {
   position: absolute;
   top: -6rem;
@@ -49,7 +61,7 @@
 .vault-icon-box {
   width: 4rem;
   height: 4rem;
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  background: var(--primary-gradient);
   border-radius: 1.25rem;
   display: flex;
   align-items: center;
@@ -61,7 +73,7 @@
 .vault-emoji { font-size: 1.75rem; }
 
 .vault-title {
-  color: #1e293b; /* Deep slate for high contrast */
+  color: var(--text-main);
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   font-weight: 700;
@@ -69,7 +81,7 @@
 }
 
 .vault-subtitle {
-  color: #64748b; /* Muted slate */
+  color: var(--text-muted);
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -78,17 +90,17 @@
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .input-label {
   display: block;
   font-size: 0.65rem;
   font-weight: 800;
-  color: #475569; /* Darker label for readability */
+  color: #475569;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
   margin-left: 0.25rem;
 }
 
@@ -96,55 +108,34 @@
   position: relative;
 }
 
-.input-icon {
-  position: absolute;
-  left: 1.25rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.9rem;
-  color: #94a3b8;
-}
-
 .auth-input {
   width: 100%;
-  /* Light inputs need a solid-ish background to pop */
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 1.25rem;
-  padding: 1.1rem 1rem 1.1rem 3.25rem;
-  color: #1e293b;
-  font-size: 0.9rem;
+  border-radius: 1.1rem;
+  padding: 1rem 1rem 1rem 1.25rem; /* Standard padding */
+  color: var(--text-main);
+  font-size: 1rem; /* Better for mobile zoom prevention */
   transition: all 0.3s ease;
-  box-sizing: border-box;
 }
 
 .auth-input:focus {
   outline: none;
-  background: #ffffff;
   border-color: #a855f7;
-  /* Light mode glow focus */
   box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
-}
-
-.auth-input::placeholder {
-  color: #cbd5e1;
 }
 
 /* 5. The Primary Button */
 .btn-vault-primary {
   width: 100%;
-  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  background: var(--primary-gradient);
   border: none;
   padding: 1.15rem;
-  border-radius: 1.25rem;
+  border-radius: 1.1rem;
   color: #ffffff;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 1rem;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
   box-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -152,44 +143,67 @@
 .btn-vault-primary:hover {
   transform: translateY(-2px);
   filter: brightness(1.05);
-  box-shadow: 0 15px 30px -8px rgba(124, 58, 237, 0.5);
 }
 
-/* 6. Footer & Toggle */
+/* 6. Footer */
 .vault-footer {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   padding-top: 1.5rem;
   text-align: center;
   border-top: 1px solid #f1f5f9;
 }
 
-.footer-text {
-  color: #64748b;
-  font-size: 0.8rem;
+/* --- RESPONSIVE QUERIES --- */
+
+/* Tablet & Smaller Desktops */
+@media (max-width: 768px) {
+  .glass-vault-card {
+    padding: 3rem 2rem;
+    max-width: 400px;
+  }
+  
+  .vault-title {
+    font-size: 1.75rem;
+  }
 }
 
-.toggle-btn {
-  background: none;
-  border: none;
-  color: #7c3aed;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  margin-left: 0.25rem;
-  transition: color 0.2s;
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 1rem;
+    align-items: flex-start; /* Better for long forms on small screens */
+    padding-top: 10vh;
+  }
+
+  .glass-vault-card {
+    padding: 2.5rem 1.5rem;
+    border-radius: 2rem; /* Slightly tighter corners for small screens */
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  .vault-icon-box {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .vault-title {
+    font-size: 1.5rem;
+  }
+
+  .auth-input, .btn-vault-primary {
+    padding: 0.9rem 1rem;
+    font-size: 0.95rem;
+  }
 }
 
-.toggle-btn:hover { 
-  color: #6d28d9;
-  text-decoration: underline;
-}
-
-/* 7. Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  animation: fadeInUp 0.8s ease-out forwards;
+/* Height fix for short screens (Landscape phones) */
+@media (max-height: 600px) {
+  .auth-container {
+    align-items: flex-start;
+    padding: 2rem 1rem;
+  }
+  .glass-vault-card {
+    margin-bottom: 2rem;
+  }
 }

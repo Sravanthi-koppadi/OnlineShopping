@@ -8,48 +8,63 @@
         <span class="vault-emoji">🔐</span>
       </div>
       <h2 class="vault-title">
-        {{ isLoginMode() ? 'Welcome Back login' : 'Sign in' }}
+        {{ isLoginMode() ? 'Welcome Back Login' : 'Sign Up' }}
       </h2>
       <p class="vault-subtitle">
         {{ isLoginMode() ? 'Enter your credentials to access your collection' : 'Create a secure account to start shopping' }}
       </p>
     </div>
 
-    <form (submit)="onSubmit(); $event.preventDefault()" class="auth-form">
+    <form (submit)="authForm.valid && onSubmit()" #authForm="ngForm" class="auth-form" novalidate>
       
       <div class="input-group">
         <label class="input-label">Username</label>
-        <div class="input-wrapper">
+        <div class="input-wrapper" [class.input-error]="uname.invalid && uname.touched">
           <span class="input-icon">👤</span>
           <input 
             type="text" 
             [(ngModel)]="username" 
             name="username"
-            placeholder="Enter username "
+            #uname="ngModel"
+            placeholder="Enter username"
             class="auth-input"
             required
+            minlength="3"
           >
         </div>
+        <span class="error-msg" *ngIf="uname.invalid && uname.touched">
+          Username must be at least 3 characters
+        </span>
       </div>
 
       <div class="input-group">
         <label class="input-label">Password</label>
-        <div class="input-wrapper">
+        <div class="input-wrapper" [class.input-error]="pwd.invalid && pwd.touched">
           <span class="input-icon">🔑</span>
           <input 
             type="password" 
             [(ngModel)]="password" 
             name="password"
+            #pwd="ngModel"
             placeholder="Enter password"
             class="auth-input"
             required
+            minlength="6"
           >
         </div>
+        <span class="error-msg" *ngIf="pwd.invalid && pwd.touched">
+          Password must be at least 6 characters
+        </span>
       </div>
 
       <div class="action-wrapper">
-        <button type="submit" class="btn-vault-primary">
-          <span>{{ isLoginMode() ? 'Login' : 'Sign in' }}</span>
+        <button 
+          type="submit" 
+          class="btn-vault-primary" 
+          [disabled]="authForm.invalid"
+          [class.btn-disabled]="authForm.invalid"
+        >
+          <span>{{ isLoginMode() ? 'Login' : 'Sign Up' }}</span>
           <span class="arrow-icon">→</span>
         </button>
       </div>
@@ -59,7 +74,7 @@
       <p class="footer-text">
         {{ isLoginMode() ? "New to ShopVault?" : "Already a member?" }}
         <button (click)="toggleMode()" class="toggle-btn">
-          {{ isLoginMode() ? 'Request Access' : 'Sign In' }}
+          {{ isLoginMode() ? 'Request Access' : 'Log in' }}
         </button>
       </p>
     </div>

@@ -1,0 +1,69 @@
+<div class="product-detail-container fade-in">
+  <button routerLink="/" class="back-link group">
+    <span class="arrow">←</span>
+    <span class="label">Back to Collection</span>
+  </button>
+
+  @if (product(); as p) {
+    <div class="detail-layout">
+      
+      <div class="detail-visual group">
+        <div class="glow-effect"></div>
+        <div class="main-image-card slide-up">
+          <img [src]="p.image" [alt]="p.title" class="zoom-img">
+          <span class="category-pill">{{ p.category }}</span>
+        </div>
+      </div>
+
+      <div class="detail-content slide-up">
+        <div class="meta-row">
+          <div class="rating-badge">
+            <span class="star">★</span> {{ p.rating || '4.8' }} 
+            <span class="reviews-text">Reviews</span>
+          </div>
+          <span class="status-tag">In Stock</span>
+        </div>
+
+        <h1 class="detail-title">{{ p.title }}</h1>
+
+        <div class="description-box">
+          <p class="detail-description">
+            {{ p.description || 'Experience the pinnacle of design and functionality with this exclusive piece from our ' + p.category + ' line.' }}
+          </p>
+          
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Premium Materials & Craftsmanship</li>
+            <li><span class="check">✓</span> Secure Vault Packaging</li>
+          </ul>
+        </div>
+
+        <div class="purchase-footer">
+          <div class="price-stack">
+            <span class="price-label">Investment</span>
+            <span class="price-value">${{ p.price }}</span>
+          </div>
+          
+          <button (click)="addToCart()" 
+        class="btn-vault-primary detail-buy-btn" 
+        [disabled]="isAdded()">
+  @if (!isAdded()) {
+    <span>Add to Vault</span>
+    <span class="cart-emoji">🛒</span>
+  } @else {
+    <span>Added to Vault</span>
+    <span class="cart-emoji">✅</span>
+  }
+</button>
+          </div>
+
+        <div class="security-badge">
+          <span class="shield">🛡️</span> Fully Encrypted Secure Checkout
+        </div>
+      </div> </div> } @else {
+    <div class="error-state">
+      <h2 class="error-title">Vault Item Not Found</h2>
+      <p class="error-subtitle">This item may have been moved or is no longer part of our collection.</p>
+      <button routerLink="/" class="btn-vault-primary">Return to Gallery</button>
+    </div>
+  }
+</div> 

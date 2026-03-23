@@ -1,0 +1,195 @@
+/* 1. Main Container: Soft Light Grey/Blue */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  /* A soft gradient makes light mode feel more premium */
+  background: radial-gradient(circle at top right, #f8fafc, #f1f5f9);
+  font-family: 'Inter', sans-serif;
+}
+
+/* 2. The Glassmorphic Card (Light Edition) */
+.glass-vault-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  /* Use high-opacity white for the base */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* Use a darker border to define the shape against the light background */
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 2.5rem;
+  padding: 3.5rem 2.5rem;
+  overflow: hidden;
+  /* Softer, more natural shadow */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+}
+
+/* Decorative Glow Effect (Subtle Purple Hue) */
+.vault-glow {
+  position: absolute;
+  top: -6rem;
+  left: -6rem;
+  width: 15rem;
+  height: 15rem;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* 3. Header Styling */
+.vault-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.vault-icon-box {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
+}
+
+.vault-emoji { font-size: 1.75rem; }
+
+.vault-title {
+  color: #1e293b; /* Deep slate for high contrast */
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.vault-subtitle {
+  color: #64748b; /* Muted slate */
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* 4. Form & Input Layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #475569; /* Darker label for readability */
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.auth-input {
+  width: 100%;
+  /* Light inputs need a solid-ish background to pop */
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 1.1rem 1rem 1.1rem 3.25rem;
+  color: #1e293b;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.auth-input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #a855f7;
+  /* Light mode glow focus */
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+}
+
+.auth-input::placeholder {
+  color: #cbd5e1;
+}
+
+/* 5. The Primary Button */
+.btn-vault-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  border: none;
+  padding: 1.15rem;
+  border-radius: 1.25rem;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-vault-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 15px 30px -8px rgba(124, 58, 237, 0.5);
+}
+
+/* 6. Footer & Toggle */
+.vault-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  text-align: center;
+  border-top: 1px solid #f1f5f9;
+}
+
+.footer-text {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #7c3aed;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 0.25rem;
+  transition: color 0.2s;
+}
+
+.toggle-btn:hover { 
+  color: #6d28d9;
+  text-decoration: underline;
+}
+
+/* 7. Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}

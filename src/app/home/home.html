@@ -1,0 +1,77 @@
+<div class="home-wrapper fade-in">
+  <section class="hero-section">
+    <div class="hero-gradient-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Discover Premium Products</h1>
+      <p class="hero-subtitle">
+        Curated collection of high-quality items designed to elevate your everyday experience.
+      </p>
+    </div>
+  </section>
+
+  <section class="filter-section">
+    <div class="filter-container">
+      <span class="filter-label">Filter By:</span>
+      <div class="filter-buttons">
+        @for (cat of categories(); track cat) {
+          <button 
+            (click)="setCategory(cat)"
+            class="filter-btn"
+            [class.active]="selectedCategory() === cat">
+            {{ cat }}
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="grid-section">
+    <div class="product-grid">
+      @for (product of filteredProducts(); track product.id) {
+        <div class="product-card" [routerLink]="['/product', product.id]">
+          
+          <div class="image-area">
+            <img [src]="product.image" [alt]="product.title" class="product-img">
+            <span class="category-tag">{{ product.category }}</span>
+            <div class="image-overlay"></div>
+          </div>
+          
+          <div class="card-body"> 
+            <div class="card-header"> 
+              <h3 class="product-title">{{ product.title }}</h3>
+              <span class="product-price">${{ product.price }}</span>
+            </div>
+            
+            <p class="product-description">
+              Premium {{ product.category }} selection. Experience the ShopVault difference.
+            </p>
+            
+            <button 
+  (click)="onAddToCart(product); $event.stopPropagation()"
+  class="add-to-vault-btn"
+  [disabled]="addedProductId() === product.id"
+  [style.background]="addedProductId() === product.id ? '#16a34a' : ''">
+  
+  @if (addedProductId() !== product.id) {
+    <span>ADD TO VAULT</span>
+    <span class="cart-icon">🛒</span>
+  } @else {
+    <span>ADDED!</span>
+    <span class="cart-icon">✅</span>
+  }
+</button>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (filteredProducts().length === 0) {
+      <div class="empty-state-card">
+        <p class="empty-message">No products found matching your search.</p>
+        <button (click)="setCategory('All')" class="reset-filter-link">
+          View the full collection 
+        </button>
+      </div>
+    }
+  </section>
+</div>

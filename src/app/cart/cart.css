@@ -1,0 +1,243 @@
+/* 1. Page Container: Soft Light Background */
+.cart-page-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem; 
+  background-color: #f8fafc; /* Crisp, light grey-blue */
+  color: #1e293b; /* Deep slate for readability */
+  min-height: 100vh;
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2.5rem;
+}
+
+/* 2. Grid Layout */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .cart-layout { grid-template-columns: 1fr; }
+}
+
+/* 3. Item Cards (Light Glass) */
+.cart-item-card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 1); /* Bright white border for "pop" */
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.cart-item-card:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateX(5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.item-image-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: #ffffff;
+  margin-right: 1.5rem;
+  border: 1px solid #edf2f7;
+}
+
+.item-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-info { flex: 1; }
+
+.item-category {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.item-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.item-price {
+  color: #7c3aed; /* Stronger purple for light mode */
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* 4. Quantity Buttons (Refined Light Mode) */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 0.25rem;
+  margin: 0 2rem;
+  border: 1px solid #e2e8f0;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: #475569;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover { 
+  background: #ffffff;
+  color: #7c3aed;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.qty-number {
+  width: 30px;
+  text-align: center;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  color: #94a3b8;
+  transition: all 0.2s;
+}
+
+.remove-btn:hover { 
+  transform: scale(1.1);
+  color: #ef4444; /* Standard Red for "Delete" */
+}
+
+/* 5. Summary Sidebar (Sticky Glass Card) */
+.summary-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(25px);
+  padding: 2.5rem;
+  border-radius: 2.25rem;
+  border: 1px solid #ffffff;
+  position: sticky;
+  top: 7rem;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08);
+}
+
+.summary-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.summary-row.divider {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  color: #1e293b;
+}
+
+.total-value {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #7c3aed;
+}
+
+.free { color: #10b981; font-weight: 700; }
+.btn-vault-secondary{
+  width: 50%;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  border: none;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+  transition: all 0.3s;
+}
+
+/* 6. Buttons & Security */
+.btn-vault-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  border: none;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+  transition: all 0.3s;
+}
+
+.btn-vault-primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.4);
+}
+
+.btn-vault-primary:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.secure-note {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.empty-text{
+  font-size: 2rem;
+  
+}
+

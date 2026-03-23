@@ -1,0 +1,67 @@
+<div class="cart-page-container fade-in">
+  <header class="cart-header">
+    <h1 class="page-title">Your Shopping Vault</h1>
+  </header>
+
+  <div class="cart-layout">
+    <div class="cart-items-column">
+      @for (item of cartDetails(); track item.productId) {
+        <div class="cart-item-card">
+          <div class="item-image-box">
+            <img [src]="item.details?.image" [alt]="item.details?.title">
+          </div>
+          
+          <div class="item-info">
+            <p class="item-category">{{ item.details?.category }}</p>
+            <h3 class="item-name">{{ item.details?.title }}</h3>
+            <p class="item-price">${{ item.details?.price }}</p>
+          </div>
+
+          <div class="quantity-control">
+            <button class="qty-btn" (click)="cartService.updateQuantity(item.productId, item.quantity - 1)">-</button>
+            <span class="qty-number">{{ item.quantity }}</span>
+            <button class="qty-btn" (click)="cartService.updateQuantity(item.productId, item.quantity + 1)">+</button>
+          </div>
+
+          <button class="remove-btn" (click)="cartService.removeFromCart(item.productId)">
+            <span class="trash-icon">🗑️</span>
+          </button>
+        </div>
+      } @empty {
+        <div class="empty-cart-state">
+          
+          <p class="empty-text">🛒Your cart is empty.</p>
+          <button routerLink="/" class="btn-vault-secondary">Explore Collection</button>
+        </div>
+      }
+    </div>
+
+    <aside class="summary-column">
+      <div class="summary-card">
+        <h2 class="summary-title">Order Summary</h2>
+        
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span class="value">${{ subtotal().toFixed(2) }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span class="value free">FREE</span>
+        </div>
+        <div class="summary-row divider">
+          <span class="total-label">Total</span>
+          <span class="total-value">${{ subtotal().toFixed(2) }}</span>
+        </div>
+
+        <button 
+          class="btn-vault-primary" 
+          (click)="handleCheckout()" 
+          [disabled]="cartDetails().length === 0">
+          Complete Purchase
+        </button>
+        
+        <p class="secure-note">🔒 End-to-End Encrypted Checkout</p>
+      </div>
+    </aside>
+  </div>
+</div>

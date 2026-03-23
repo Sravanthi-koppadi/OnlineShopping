@@ -1,0 +1,62 @@
+<header class="main-header">
+  <div class="header-container">
+    
+    <div class="header-logo" routerLink="/">
+      <div class="logo-icon">
+        <span class="emoji">💎</span>
+      </div>
+      <span class="logo-text">ShopVault</span>
+    </div>
+
+    <nav class="header-nav">
+      <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon">🏛️</span>
+        <span class="nav-text">Products</span>
+      </a>
+    </nav>
+
+    <div class="header-search">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          placeholder="Search exclusive collection..." 
+          (input)="handleSearch($event)"
+          class="search-bar"
+        >
+      </div>
+    </div>
+
+    <div class="header-actions">
+      
+      <button (click)="navigateToCart()" class="action-btn cart-btn">
+        <span class="icon">🛒</span>
+        <span class="btn-label">Cart</span>
+        
+        @if (cartService.cartCount() > 0) {
+          <span class="cart-badge">{{ cartService.cartCount() }}</span>
+        }
+      </button>
+
+      <div class="vertical-divider"></div>
+
+      <div class="auth-box">
+        @if (authService.currentUser(); as user) {
+          <div class="user-info">
+            <div class="user-meta">
+              <span class="meta-label">Authorized User</span>
+              <span class="username">{{ user.username |titlecase}}</span>
+            </div>
+            <button (click)="onLogout()" class="logout-btn">Logout</button>
+          </div>
+        } @else {
+          <button routerLink="/login" class="btn-vault-primary header-login">
+            <span>Login</span>
+            <span class="lock-emoji">🔐</span>
+          </button>
+        }
+      </div>
+    </div>
+
+  </div>
+</header>
